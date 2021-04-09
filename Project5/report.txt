@@ -1,0 +1,136 @@
+Shayan Karmaly
+Professor Smallberg
+CS31
+20th November 2020
+															Project 5 Report
+	1)
+	For me, this project was the hardest of the quarter so far. I struggled a lot specifically with grasping how to copy an array of cstrings. I understood that c-strings and c++ strings are very similar and that they are both just 	arrays of characters, but c-strings just became super overwhelming at one point. It helped me to really take a big break from working on the project (literally a whole day) and coming back to it with a fresh mind and after 		watching some YouTube videos on c-strings. I was able to understand how to do things with c-strings and the different functions that you are able to utilize. Doing the Zybooks also helped a lot in practicing utilizing the 		different utility functions for c-strings.
+
+	2) 
+	My logic for isValidCase was basically just to create a function that would check the length of the passed array was at least greater than 0 and converted each element in the array to a lowercase character in the process. 
+	
+	isValidCase:
+	
+	...
+	if word is less than or equal to 0
+		return false
+	... 
+	repeatedly:
+		change all letters to lowercase 
+		if the element within the array is not lowercase, return false
+
+	My logic for cleanupRules was to essentially read in the passed arrays and after numerous tests for both one-word and two-word match rules, return the number of clean form word rules. Tests include checking for empty strings, a 	valid character, and duplicate word rules. 
+
+	cleanupRules:
+	
+	...
+
+	if nRules is less than or equal to 0
+		return 0
+	...
+	repeatedly:
+		changes every element in wording and wordout to lowercase characters
+
+	...
+	repeatedly:
+		checks for potential one-word rules
+		if wordin[i] is not an empty string, continue on
+			if wordin[i] isValidCase, continue on
+				if the length of wordout[i] equals 0, continue on
+					...
+					repeatedly:
+						check to see if there's a duplicate one-word rule
+						if wordin[i] and the index of the current for loop, wordin[repeat] are the same, break. 
+					if the index of this for loop, repeat, is equal to nextInd (index that doesn't have a known one-word rule), continue on
+						...
+						repeatedly:
+						iterate through to shift each element to the right in wordin and wordout
+	
+	...
+	repeatedly:
+		checking for potential two-word rules
+		if length of wordin[i] and wordout[i] are both greater than 0, continue on
+			if both wordin[i] and wordout[i] pass isValidCase, continue on
+				if comparing wordin[i] and wordout[i] does not equal 0, continue on
+					...
+					repeatedly:
+						checking to make sure there is no duplicate one-word rule
+						if comparing wordin[repeat], the index of the current for loop, with wordin[i] is equal to 0 and the length of wordout[i] is equal to 0, break out of the loop. 
+						if comparing wordin[repeat], the index of the current for loop, and wordin[i] is equal to 0 and comparing wordout[repeat] with wordout[i] equals 0, break out of the loop. 
+					if repeat is equal to nextInd, continue
+						...
+						repeatedly:
+							shifting each element to the right like previously
+	return nextInd
+
+	My logic for determineScore consisted of doing everything necessary to count the score, the number of matches. To do this, I first verified the elements were valid and also skipped through any non-alphabetic characters. Using two 	booleans, everytime the currect match was found and there were no duplicates, score would be incremented by one. 
+
+	determineScore:
+
+	...
+	repeatedly:
+		while the index is less than the length of document continue
+		... 
+		repeatedly:
+			while the element at the current index is non-alphabetic, increment the index by one
+		...
+		repeatedly
+			while the element at the current index is not a newline ,space or null byte, continue
+				if the current index is a character in the alphabet, convert it to a lower case. 
+				if the index reaches a space or null byte, assign a null byte into the element of that index in the temporary array current
+		...
+		repeatedly:
+			check if a word rule is found and if there are no duplicates, set the bool arrays to true. 
+				if comparing current with wordin[found], the index of the current array, is equal to 0, matchIn[found] is true.
+				if comparing current with wordout[found] is equal to 0, matchOut[found] is true.
+	...
+	repeatedly:
+		checks both boolean arrays and if conditions are met, score is incremented
+			if matchIn[find], the index of the current for loop, and !matchOut[find] conditions are met, increment score by 1. 
+	return score
+
+	3)
+	cleanupRules:
+	
+	char win1[][MAX_WORD_LENGTH + 1] = {"", "apple", "pear", "Cherry", "pineapple", "coconut", "apple!", "banana", "lychee", "applepear", "guava", "plummmmmmmmmmmmmm", "peachessssssssssssss"};
+    	char wout1[][MAX_WORD_LENGTH + 1] = {"peach", "", "guava", "plum", "COCOnut", "", "", "blu3berry", "", "apple", "raspberry", "bbbbbbbbanana", ""};
+    
+    	assert(cleanupRules(win1, wout1, -1) == 0);	//testing an error
+    
+    	assert(cleanupRules(win1, wout1, 0) == 0);//testing an error
+    	assert(cleanupRules(win1, wout1, 1) == 0);//testing an error
+    	assert(cleanupRules(win1, wout1, 2) == 1);//testing if it will return apple
+    	assert(cleanupRules(win1, wout1, 3) == 2);//testing if it will return apple guava
+  	assert(cleanupRules(win1, wout1, 4) == 3);//testing if it will return apple guava plum
+  	assert(cleanupRules(win1, wout1, 5) == 4);//testing if it will return apple guava plum coconut
+    	assert(cleanupRules(win1, wout1, 6) == 3);//testing if assertion fails
+    	assert(cleanupRules(win1, wout1, 7) == 3);//testing if assertion fails
+    	assert(cleanupRules(win1, wout1, 8) == 3);//testing if assertion fails
+    	assert(cleanupRules(win1, wout1, 9) == 3);//testing if assertion fails
+    	assert(cleanupRules(win1, wout1, 10) == 4);//testing if assertion fails
+    	assert(cleanupRules(win1, wout1, 11) == 4);//testing if assertion fails
+
+
+
+	determineScore: testing the test cases from project 5 spec
+	
+	const int TEST1_NRULES = 3;
+            char test1win[TEST1_NRULES][MAX_WORD_LENGTH+1] = {
+                "family", "unhappy", "horse",
+            };
+            char test1wout[TEST1_NRULES][MAX_WORD_LENGTH+1] = {
+                "",       "horse",   "",
+            };
+            assert(determineScore("Happy families are all alike; every unhappy family is unhappy in its own way.",
+                        test1win, test1wout, TEST1_NRULES) == 2);
+            assert(determineScore("Happy horses are all alike; every unhappy horse is unhappy in its own way.",
+                        test1win, test1wout, TEST1_NRULES-1) == 0);
+            assert(determineScore("Happy horses are all alike; every unhappy horse is unhappy in its own way.",
+                        test1win, test1wout, TEST1_NRULES) == 1);
+            assert(determineScore("A horse!  A horse!  My kingdom for a horse!",
+                        test1win, test1wout, TEST1_NRULES) == 1);
+            assert(determineScore("horse:stable ratio is 10:1",
+                        test1win, test1wout, TEST1_NRULES) == 0);
+            assert(determineScore("**** 2020 ****",
+                        test1win, test1wout, TEST1_NRULES) == 0);
+            cout << "All tests succeeded" << endl;
