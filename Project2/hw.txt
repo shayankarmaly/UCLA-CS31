@@ -1,0 +1,69 @@
+Shayan Karmaly
+Professor Smallberg
+CS 31 
+20th October 2020
+															Homework 2
+	1) 
+	First, the variable string grendel is initialized to “endl”. The first line outputs ‘endlendl’ because the first cout done was of a string “endl” and because there was no new line character, the next cout which prints the string 	variable grendel holding the string “endl” prints on the same line as the previous cout. The next cout commands a newline. The last cout prints the string “grendel” on the newline created by the previous command.
+	
+	Output: 
+	endlendl
+	grendel
+	
+	2) 
+	To trace this program, I first initialized side to a simple number 	like 3 when prompted to enter a number 	for side. From there, I 	traced the for loop through the following iterations: 
+	side = 3	     i	     j
+	first iteration:     1	     1, 0
+	second iteration:    2	     2, 1, 0
+	third iteration:     3       3, 2, 1, 0
+	Output: 
+	#
+	##
+	###
+
+	Transcribing the way I traced each iteration in words, the outside for loop was basically for the amount of rows while the inner for loop was for the columns and printed out the ‘#’ each time until it decreased in value by each 	iteration til it satisfied the condition ‘j >= 0’. The first pass, i=0, i<size (3), and increments to 1 at the end of the outer for loop. Then we go into the inner for loop where j = i, so j = 1, and 1 (j) >=0 so it 		continues but decrements j by 1 making j = 0. The for loop then prints outputs “#”.The program goes back into the inner for loop and the condition is met where 0 (j) >=0 so it exits the inner for loop and goes back to the outer 	for loop to do the whole process all over again. 
+
+	3)
+
+	 int side;
+
+	    cout << "Enter a number: ";
+	    cin >> side;
+	
+		int i=0;
+
+		while(i < side)
+		{
+			int j = i;
+			while(j >=0)
+			{
+				cout << “#”;
+				j--;
+			}
+			cout << endl;
+			i++;
+		}
+
+	 4)
+		switch(codeSection)
+		{
+			case 281:
+				cout << “bigamy”;
+				break;
+			case 321:
+			case 322:
+				cout << “selling illegal lottery tickets”;
+				break;
+			case 383:
+				cout << “selling rancid butter”;
+				break;
+			case 598:
+				cout << “injuring a bird in a public cemetery”;
+				break;
+			default:
+				“some other crime”;
+				break;
+
+		}
+
+	

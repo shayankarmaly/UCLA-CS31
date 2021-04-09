@@ -1,0 +1,43 @@
+Shayan Karmaly
+Professor Smallberg
+CS 31
+20th October 2020
+
+														Project 2 Report
+	
+	1. I felt some notable obstacles where some simple things like making sure I used the “==“ sign within if statements when establishing parameters. 
+	e.g. if ( cheeseType == “cheshire”…) rather than if (cheeseType = “cheshire”)
+		
+	Some other obstacles included not forgetting to use cin.ignore when first reading in the user’s input for an integer variable ‘value’ and then using getline to read in the users input for the string 	variable ‘importer’ because if 	not, the program would not run 	correctly. 
+	Other than this, I felt I did not have too much difficulty with this project. 
+	
+	2. 
+	First test: (cheshire, 3273, The Cheese Store of Beverly Hills)
+	-I wanted to test the example given in the project 2 spec to make sure I got the same result, which I did.
+	
+	Second test: (cairnsmore, 2000, Cheese Lovers) 
+	- I wanted to test if the program would output the correct result with a value > 1000 and a cheese type that isn’t cheshire or stilton. I compared the output to the import duty calculator from the class website and got the same 	result: $31.00.
+	
+	Third test: (empty string, 0, empty string)
+	-For this test, I entered incorrect inputs for all three prompts to test what would happen. I was prompted with the first error which was inputting an empty string for a cheese type. 
+	
+	Fourth test: (red windsor, -1, Cheese Palace)
+	-For this test, I entered an incorrect input value to see what the program would output. In doing so, the program outputted that I “must enter a positive value” giving the correct output message for an incorrect input for value. 
+	
+	Fifth test: (swaledale, 12000, empty string)
+	-Here I wanted to test if the program would output me the error message for inputting an empty string for the importer, in which it did. 
+	
+	Sixth test: (Lancashire, -2000, empty string)
+	-Here I wanted to test if the program would output the correct error message based on chronological order of input errors in which the negative number was the first one and it did output the correct error message. 
+	
+	Seventh test: (stilton, 8000, Cheese Emporium)
+	-Here I just wanted to test if the program would output the correct result for a cheese that is stilton and value > 1000 and compared it to the import duty calculator from the class website and got the same result. 
+	
+	Eight test: (cornish yarg, 12500, The Cheese Store)
+	-Here I wanted to compare the output of a cheese with a value greater than 12000 that wasn’t Cheshire or stilton with the import duty calculator from the website and got the same result. 
+	
+	Ninth test: (Norbury blue, 16755, Cheese Store LA)
+	-Here I wanted to compare the output of a cheese with a value greater than 13000 that wasn’t Cheshire or stilton with the import duty calculator from the website and got the same result. 
+	
+	Tenth test: (cheshire, 18976, Cheese Central)
+	-Here I wanted to compare and test for correct output of a cheese that was either Cheshire or stilton that had a value greater than 13000 with the import duty calculator from the class website and got the same result. 
