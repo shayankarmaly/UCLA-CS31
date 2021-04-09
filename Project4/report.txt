@@ -1,0 +1,185 @@
+Shayan Karmaly
+Professor Smallberg
+CS31, Project 4
+9th November 2020
+
+														Project 4 Report
+
+	a) Honestly didn't find too many obstacles because I've learned about arrays before and the zyBooks homework really helped me refresh and practice the skills I needed to complete this project. 
+
+	b) Test cases:
+	appendToAll:
+
+		first tested the example in the project 4 spec, and then printed it out to make sure each element was appended the string 'value'.
+
+		int j = appendToAll(people, 5, "!!!"); 
+
+		Some other cases:
+
+		int j = appendToAll(people, 2, "!!!");
+		int j = appendToAll(people, 4, "$$$");
+
+		tested these to see how the function would react with an out of bounds case:
+
+		int j = appendToAll(people, -1, "!!!"); 
+		int j = appendToAll(peoples, 5, "!!!"); 
+
+	lookup:
+		First just tested to see how it would do using code from the project 4 spec. 
+		 int j = lookup(people, 5, "joe"); 
+
+		Here I test some out of bounds cases:
+
+		int j = lookup(peoples, 5, "joe");
+		int j = lookup(people, -1, "joe");
+		int j = lookup(people, 5, "me");
+
+	positionOfMax:
+
+		Tested the case from the project 4 spec to see if it would work:
+		string candidate[6] = { "jamie", "lindsey", "mark", "susan", "joe", "donald" };
+		int k = positionOfMax(candidate, 6); 
+		
+		Some other cases:
+		int k = positionOfMax(candidate, 5);
+		int k = positionOfMax(candidate, 3); 
+		int k = positionOfMax(candidate, 0); 
+
+		Also tested to see how the function would react to out of bounds cases:
+		
+		int k = positionOfMax(can, 6); 
+		int k = positionOfMax(candidate, -200); 
+		int k = positionOfMax(candidate, 6000); 
+
+	countRuns:
+		
+		Testing the example from the project 4 spec:
+		
+		string d[9] = {
+   		 "susan", "donald", "mike", "mike", "joe", "joe", "joe", "mike", "mike"
+		};
+		int p = countRuns(d, 9);
+
+		Some other cases, checking for out of bounds, and others:
+		
+		int p = countRuns(0, 9);
+		int p = countRuns(p, 9);
+		int p = countRuns(d, 0);
+		int p = countRuns(d, 2);
+		int p = countRuns(d, 5);
+		int p = countRuns(d, -5);
+
+	differ: 
+		Testing the example from the project 4 spec:
+		
+		string folks[6] = { "donald", "mike", "", "susan", "sara", "jamie" };
+		string group[5] = { "donald", "mike", "jamie", "", "susan" };
+		int r = differ(folks, 6, group, 5);  
+		int s = differ(folks, 2, group, 1);
+
+		Checking for out of bounds:
+
+		int r = differ(folks, -5, group, 5); 
+		int r = differ(folk, 5, group, 5); 
+		int r = differ(folks, 5, groups, 5); 
+		int r = differ(folks, 5, group, -5); 
+		double r = differ(folks, -5, group, 5);  
+
+		Other cases: 
+
+		int r = differ(folks, 4, group, 5);  
+		int s = differ(folks, 2, group, 1);
+		
+		int r = differ(folks, 2, group, 5);  
+		int s = differ(folks, 2, group, 1);
+
+		int r = differ(folks, 0, group, 5);  
+		int s = differ(folks, 2, group, 1);
+
+	subsequence:
+		
+		Testing the example from the project 4 spec: 
+
+		string names[10] = { "kamala", "mark", "sara", "martha", "donald", "lindsey" };
+		string names1[10] = { "mark", "sara", "martha" };
+		int t = subsequence(names, 6, names1, 3);  
+		string names2[10] = { "kamala", "martha" };
+		int u = subsequence(names, 5, names2, 2); 
+
+		Some other cases:
+
+		int t = subsequence(names, -10, names1, 3);
+		int t = subsequence(names, 6, names1, -3);
+		double t = subsequence(names, 6, names1, 3);
+
+	lookupAny: 
+
+		Testing the example from project 4 spec: 
+
+		string names[10] = { "kamala", "mark", "sara", "martha", "donald", "lindsey" };
+		string set1[10] = { "jamie", "donald", "martha", "mark" };
+		int v = lookupAny(names, 6, set1, 4);  
+		string set2[10] = { "susan", "joe" };
+		int w = lookupAny(names, 6, set2, 2); 
+
+		Some other cases:
+		
+		int v = lookupAny(name, 6, set1, 4); 
+		int v = lookupAny(names, 6, set1, -4); 
+		int v = lookupAny(names, -6, set1, 4); 
+		int v = lookupAny(names, 6, set, 4); 
+		int v = lookupAny(names, 5, set1, 4); 
+		int v = lookupAny(names, 2, set1, 3); 
+
+	rotateLeft:
+		
+		Testing the example from project 4 spec: 
+
+		string politician[5] = { "kamala", "jamie", "lindsey", "sara", "mark" };
+		int m = rotateLeft(politician, 5, 1);  
+
+		Some other cases:
+		
+		int m = rotateLeft(politician, -10, 0); 
+		int m = rotateLeft(politician, 5, 1); 
+
+	flip:
+
+		Testing the example from project 4 spec: 
+
+		string folks[6] = { "donald", "mike", "", "susan", "sara", "jamie" };
+		int q = flip(folks, 4);
+
+		Some other cases:
+
+		int q = flip(folks, -5);
+		int q = flip(folks, 0);
+		int q = flip(fol, 4);
+
+	divide:
+
+		Testing the example from project 4 spec: 
+
+		string candidate[6] = { "jamie", "lindsey", "mark", "susan", "joe", "donald" };
+		int x = divide(candidate, 6, "kamala"); 
+
+		string candidate2[4] = { "mark", "sara", "lindsey", "mike" };
+		int y = divide(candidate2, 4, "mike");
+
+		Some other cases:
+
+		int x = divide(candidate, 0, "kamala"); 
+		int x = divide(candidate, -9, "kamala"); 
+		int x = divide(candidate, 6, 0); 
+
+	
+		
+		I also used the complete assert code provided in the project 4 spec and got the correct results. 
+		
+
+		
+		
+		
+		 
+		
+		
