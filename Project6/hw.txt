@@ -1,0 +1,230 @@
+Shayan Karmaly
+Professor Smallberg
+CS31
+27th November 2020
+														Project 6
+	1a)
+
+		Bugs:	
+		When initializing the second element of the array to 20, the syntax was incorrect and that line needed to have parentheses with the * operator on the outside like in my main program below. The original line refers to the 		int 31. The line initializing ptr[0] = 10; wasn't setting arr[2] to 10 it was setting the first element in ptr to 0 which wasn't the correct output. 
+
+		int main()
+   		{
+       			int arr[3] = { 5, 10, 15 };
+       			int* ptr = arr;
+       			*ptr = 30;
+       			*(ptr+1) = 20;
+       			ptr += 2;
+			ptr[0] = 10;
+
+           
+      			for (ptr = arr; ptr < arr+ 3; i++) // changes the value first and then the position, starts from the first element to the last
+           			cout << ptr* << endl;
+        
+   		}
+
+
+
+	1b)
+		This function does not do its intended purpose because the original program passes the pointer parameter by value. To fix this, the pointer parameter must be passed by reference so that the function is able to modify it. 
+
+		My implementation of the function:
+
+		void findMax(int arr[], int n, int* &pToMax)
+    		{
+        		if (n <= 0) 
+            			return;      // no items, no maximum!
+    
+        		pToMax = arr;
+
+        		for (int i = 1; i < n; i++)
+        		{
+            			if (arr[i] > *pToMax)
+				pToMax = arr + i;
+        		}
+    		}       
+	
+	1c)
+		the pointer ptr is uninitialized so the function will produce undefined behavior if ptr is used/called.
+		
+		Fixing the main function: 
+
+		int main()
+    		{
+			int num;
+        		int* ptr = &num;
+        		computeCube(5, ptr);
+        		cout << "Five cubed is " << *ptr << endl;
+    		}	
+	1d)
+		First off, in the while loop, it's comparing the address of a particular element and not the character. The same problem happens in the if statement in the while loop and when returning the value comparison after the while loop. To fix this I used pointers to find the character the pointer points to in the cstring and not the address like originally. 
+		
+		My implementation of the function: 
+
+		bool strequal(const char str1[], const char str2[])
+		{
+ 
+    			while (*str1 != 0 && *str2 != 0) 
+    			{ 
+				if (*str1 != *str2)  
+			        	return false;
+      				str1++;
+      				str2++;
+    			}
+    			return *str1 == *str2;// return the value comparison
+}
+
+	1e)
+		Due to the fact that anArray's scope is limited to the getPtrToArray function, anArray cannot be stored in the main function. When the pointer points to a value, it won't be a value in anArray but a random value resulting in undefined behavior. 
+
+	
+
+	2a)
+		double* cat;
+	
+	2b)
+		double mouse[5];
+	
+	2c)
+		cat = &mouse[4];
+
+	2d)
+		*cat = 25;
+	
+	2e)
+		*(mouse+3) = 54;
+
+	2f)
+		cat -=3;
+
+	2g)
+		cat[2] = 42;
+
+	2h)
+		cat[0] = 27;
+
+	2i)
+		bool b = (*cat == (*cat+1));
+
+	2j)
+		bool d = (cat == mouse);
+
+	
+
+	3a)
+		double mean(const double* scores, int numScores) 
+		{
+ 
+			double tot = 0; 
+			for (int i = 0; i < numScores; i++) 
+			{
+				tot += *(scores + i);
+			} 
+			return tot/numScores;
+}
+
+
+	3b)
+		const char* findTheChar(const char* str, char chr) 
+		{
+			for (int k = 0; *(str+k) != 0; k++) 
+			{
+				if (*(str+k) == chr) 
+				{
+					return (str + k);
+				}
+			}
+	
+			return nullptr;
+		}
+
+
+	3c)
+		const char* findTheChar(const char* str, char chr) 
+		{
+			while (*str != 0)
+			{
+				if (*str == chr)
+				{ 
+					return str;
+				}
+				str++;
+			}
+			return nullptr;
+		}
+
+
+	
+
+	4)
+		#include <iostream>
+    		using namespace std;
+
+    		int* maxwell(int* a, int* b) // returns the largest values position
+    		{
+        		if (*a > *b)
+            			return a;
+        		else
+            			return b;
+    		}
+
+    		void swap1(int* a, int* b) // swaps the addresses the pointer points to
+    		{
+        		int* temp = a; // stores the address of the first pointer in a temporary pointer
+        		a = b;  // creates a pointer holding the address the pointer b pointed to. 
+       		 	b = temp; // initializes b to point to what a originally pointed to
+    		}
+
+    		void swap2(int* a, int* b) // swaps the values of the passed pointers
+    		{
+        		int temp = *a; // temp temporary holds the value of the pointer a
+        		*a = *b; // value that b points to is passed to the value a points to
+        		*b = temp; // value of b is changed to the a's original value it pointed to
+    		}
+
+    		int main()
+    		{
+        		int array[6] = { 5, 3, 4, 17, 22, 19 };
+
+        		int* ptr = maxwell(array, &array[2]); // compares position 0 vs position 2 and returns position 0 because 5 is larger than 4.
+        		*ptr = -1; // changing position 0's value to -1 now. 
+       			 ptr += 2; // increments ptr's position by 2. So now at position 2 of the array
+       			 ptr[1] = 9; // changes the value at position arr[2+1] == arr[3] to 9.
+        		*(array+1) = 79; // changes the value of position 1 in array to 79 now.
+
+        		cout << &array[5] - ptr << endl; // printing the position difference of position 5 and position 2 which is 3. 
+
+        		swap1(&array[0], &array[1]); // doesn't change the original because the scope of swap1 has no effect on the main function
+        		swap2(array, &array[2]); // swaps the values of position 0 and position 2
+
+        		for (int i = 0; i < 6; i++)
+            			cout << array[i] << endl; // prints each element in the array. Prints {4, 79, -1, 9, 22, 19} and each number on a new line.
+
+		Output: 
+		3 when position 5 subtracts position 2 in the array
+		4 when position 0 and position 2 value swap
+		79 when position 1 is initialized to 79. 
+		-1 when position 0 is assigned to -1, at position 2 when printed.
+		9 when value at position 3 is changed to 9
+		22 and 19 stays the same
+    } 
+
+
+	
+
+	5)
+
+	void removeS (char* c)
+    	{
+        	char* cat = c; // assign the passed char pointer to a local variable
+        	while(*c != '\0')
+        	{
+            		if(*c != 'S' && *c != 's')
+            		{
+                	*cat = *c; // copies that element into the local cstring
+                	cat++;
+            		}
+            	c++; // go to the next element in the cstring
+        	}
+        	*cat = '\0'; // adds the null byte at the end
+    	}
